@@ -1,3 +1,4 @@
+
 var Serie = /** @class */ (function () {
     function Serie(numero, nombre, plataforma, temporadas, descripcion, link_plataforma, link_serie) {
         this.numero = numero;
@@ -10,4 +11,4 @@ var Serie = /** @class */ (function () {
     }
     return Serie;
 }());
-export { Serie };
+exports.Serie = Serie;
