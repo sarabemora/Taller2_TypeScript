@@ -1,14 +1,22 @@
 import { dataSeries } from "./dataSeries.js";
 var seriesTbody = document.getElementById('series');
 var promTemporadas = document.getElementById("promedio");
+var cardBody = document.getElementById('id');
 desplegarSeries(dataSeries);
 promTemporadas.innerHTML = "".concat(getPromedioTemporadas(dataSeries));
 function desplegarSeries(series) {
     series.forEach(function (c) {
+        var _a;
         var trElement = document.createElement("tr");
-        trElement.innerHTML = "<td>".concat(c.numero, "</td>\n                                <td>").concat(c.nombre, "</td>\n                                <td>").concat(c.plataforma, "</td>\n                                <td>").concat(c.temporadas, "</td>");
+        trElement.innerHTML = "<td>".concat(c.numero, "</td>\n                                <td class=\"show-card\">").concat(c.nombre, "</td>\n                                <td>").concat(c.plataforma, "</td>\n                                <td>").concat(c.temporadas, "</td>");
+        (_a = trElement.querySelector('.show-card')) === null || _a === void 0 ? void 0 : _a.addEventListener('click', function () { return desplegarCard(c); });
         seriesTbody.appendChild(trElement);
     });
+}
+function desplegarCard(serie) {
+    var cardElement = document.querySelector('#id');
+    cardElement.innerHTML = "<div class=\"card\" style=\"width: 20rem;\">\n                            <img class=\"card-img-top\" src=\"".concat(serie.link_serie, "\" alt=\"").concat(serie.nombre, "\">\n                            <div class=\"card-body\">\n                                <h5 class=\"card-title\">").concat(serie.nombre, "</h5>\n                                <p class=\"card-text\">").concat(serie.descripcion, "</p>\n                                <a href=\"").concat(serie.link_plataforma, "\">").concat(serie.link_plataforma, "</a>\n                            </div>\n                            </div>");
+    cardBody.appendChild(cardElement);
 }
 function getPromedioTemporadas(series) {
     var totalTemporadas = 0;
